@@ -2,15 +2,23 @@
 
 let args = process.argv.slice(2) // array
 function simpleTimer() {
+  let skipped = null
 
   for (let i = 0; i < args.length; i++) {
-     setTimeout(() => {
-       process.stdout.write('\x07')
-      },parseInt(args[i]) * 1000) ;
+  function alarmContinued(){
+    setTimeout(() => {
+      process.stdout.write('\x07')
+     },parseInt(args[i]) * 1000) ;
+  }
+
+  args[i] < 0 || args[i].match(/[^ 0-9]/) ? skipped += 1 : alarmContinued();
+    //  setTimeout(() => {
+    //    process.stdout.write('\x07')
+    //   },parseInt(args[i]) * 1000) ;
     }
 
 
-// console.log(args);
+  console.log(skipped);
 
 }
 
